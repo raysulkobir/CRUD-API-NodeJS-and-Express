@@ -1,9 +1,11 @@
 const express = require("express");
 const { Hello } = require("../controller/HelloController");
 
-const router = express.Router(); // Fixed typo from 'Route' to 'Router'
+//TODO Fixed typo from 'Route' to 'Router'
+const router = express.Router();
 
 // TODO: This is my first GET routing
-router.get("/hello", Hello); // Added leading slash for the route path
+router.get("/hello", Hello);
 
-module.exports = router; // Fixed export to use 'module.exports'
+//TODO Fixed export to use 'module.exports'
+module.exports = router;
