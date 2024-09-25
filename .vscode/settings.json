@@ -1,0 +1,71 @@
+{
+    "editor.formatOnType": true,
+    "prettier.singleQuote": true, // Use single quotes instead of double quotes
+    "prettier.trailingComma": "all", // Add trailing commas wherever possible (e.g., arrays, objects)
+    "prettier.arrowParens": "avoid", // Omit parentheses when unnecessary (e.g., single argument arrow functions)
+    "prettier.printWidth": 80, // Wrap lines at 80 characters
+    "prettier.tabWidth": 2, // Use 2 spaces per indentation level
+    "prettier.semi": false, // Omit semicolons at the end of statements
+    "prettier.endOfLine": "lf", // Enforce Unix-style line endings
+    "prettier.bracketSpacing": true, // Add spaces between brackets in object literals
+    "prettier.jsxSingleQuote": true, // Use single quotes in JSX
+    "bladeFormatter.format.indentInnerHtml": true,
+    "bladeFormatter.format.noMultipleEmptyLines": true,
+    "bladeFormatter.format.sortTailwindcssClasses": true,
+    "breadcrumbs.enabled": false,
+    "dotenv.enableAutocloaking": false,
+    "editor.cursorBlinking": "expand",
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.cursorWidth": 3,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.fontFamily": "'Cascadia Code', Consolas, 'Courier New', monospace",
+    "editor.fontLigatures": "'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'zero', 'onum'",
+    "editor.fontSize": 15,
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.lineHeight": 22,
+    "editor.minimap.enabled": true,
+    "editor.stickyScroll.enabled": false,
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "scope": [
+                    "comment",
+                    "constant",
+                    "emphasis",
+                    "entity",
+                    "invalid",
+                    "keyword",
+                    "markup",
+                    "meta",
+                    "storage",
+                    "string",
+                    "strong",
+                    "support",
+                    "variable"
+                ],
+                "settings": {
+                    "fontStyle": "italic"
+                }
+            }
+        ]
+    },
+    "editor.wordWrap": "on",
+    "explorer.confirmDragAndDrop": false,
+    "files.associations": {
+        "*.embeddedhtml": "html",
+        ".env*": "dotenv"
+    },
+    "files.insertFinalNewline": true,
+    "files.restoreUndoStack": false,
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "php.format.codeStyle": "Laravel",
+    "security.workspace.trust.untrustedFiles": "open",
+    "terminal.integrated.cursorBlinking": true,
+    "vsicons.dontShowNewVersionMessage": true,
+    "workbench.startupEditor": "none",
+    "[php]": {
+        "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+    }
+}
