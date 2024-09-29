@@ -33,4 +33,22 @@ app.use(limiter)
 
 app.use("/api/v1", router);
 
+app.use('*', (req, res) => {
+    res.status(404).json({
+        status: 'fail', data: 'not found'
+    })
+});
+
 module.exports = app;
+
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = "mongodb+srv://raysulmern:raysulmern2024@cluster0.gyysv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+
+// Create a MongoClient with a MongoClientOptions object to set the Stable API version
+const client = new MongoClient(uri, {
+    serverApi: {
+        version: ServerApiVersion.v1,
+        strict: true,
+        deprecationErrors: true,
+    }
+});
