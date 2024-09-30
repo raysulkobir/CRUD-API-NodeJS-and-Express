@@ -1,6 +1,6 @@
 const { connectToMongo } = require('../utils/mongoUtil');
 
-exports.createPost = (req, res, next) => {
+exports.createPost = (req, res) => {
     // const title = req.body.title;
     // const content = req.body.content;
 
@@ -23,21 +23,26 @@ exports.createPost = (req, res, next) => {
 }
 
 
-exports.getPosts = async (req, res, next) => {
-    const client = await connectToMongo();
-    res.status(201).json({
-        message: 'Post created successfully!',
-        post: client
-    });
-    // console.log("client")
-    // const database = client.db("your_database_name"); // Replace with your actual database name
-    // const postsCollection = database.collection("posts"); // Replace 'posts' with your actual collection name
-    // return array of existing posts
-    // res.json({ status: "hello" })
-    // Post.find().then(foundPosts => {
-    //     res.json({
-    //         message: "All posts",
-    //         posts: foundPosts
-    //     });
-    // });
-}
+exports.getPosts = async (req, res) => {
+    try {
+        // Connect to the MongoDB client
+        const client = await connectToMongo();
+        const database = client.db("demo_db"); // Replace with your actual database name
+        const postsCollection = database.collection("brand"); // Replace 'brand' with your actual collection name
+
+        // Example action: Inserting a document into the 'brand' collection
+        const result = await postsCollection.insertOne({ name: 'sony' });
+
+        // Send the response back to the client
+        res.status(200).json({
+            message: 'Data inserted successfully',
+            data: result
+        });
+    } catch (error) {
+        console.error("Error fetching posts:", error);
+        res.status(500).json({
+            message: 'Error fetching posts',
+            error: error.message
+        });
+    }
+};
