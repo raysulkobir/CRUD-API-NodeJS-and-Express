@@ -1,15 +1,23 @@
 const express = require("express");
-const router = require("./src/routes/api")
+const mongoose = require('mongoose')
 const app = express();
+const dotenv = require('dotenv');
+dotenv.config({ path: './config.env' });
+const router = require("./src/routes/api")
+
+const DB_HOST = process.env.DATABASE_HOST
+const DB_PORT = process.env.DATABASE_PORT
+const DB_NAME = process.env.DATABASE_NAME
+const BASE_URL = process.env.BASE_URL
 
 //TODO security middleware
-
 const rateLimit = require("express-rate-limit");
 const helmet = require("helmet");
 const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
 const hpp = require("hpp");
 const cors = require("cors");
+const bodyParser = require('body-parser');
 
 
 //TODO use security middleware
@@ -18,6 +26,8 @@ app.use(helmet());
 app.use(mongoSanitize());
 app.use(xss());
 app.use(hpp());
+app.use(bodyParser.json())
+app.use(express.json());
 
 
 //TODO  request rete limit
@@ -28,11 +38,16 @@ const limiter = rateLimit({
     legacyHeaders: false,
     // store: ... , // Redis, Memcached, etc. See below.
 })
-
 app.use(limiter)
 
-app.use("/api/v1", router);
 
+//TODO Mongo DB Database connection
+mongoose.connect('mongodb://' + DB_HOST + ':' + DB_PORT + '/' + DB_NAME + '').
+    then(() => console.log("Mongodb connected successfully !")).
+    catch(error => console.log(error))
+
+//TODO Route section
+app.use("/api/v1", router);
 app.use('*', (req, res) => {
     res.status(404).json({
         status: 'fail', data: 'not found'
@@ -40,15 +55,3 @@ app.use('*', (req, res) => {
 });
 
 module.exports = app;
-
-const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://raysulmern:raysulmern2024@cluster0.gyysv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
-const client = new MongoClient(uri, {
-    serverApi: {
-        version: ServerApiVersion.v1,
-        strict: true,
-        deprecationErrors: true,
-    }
-});

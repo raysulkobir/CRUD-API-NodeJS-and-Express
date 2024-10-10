@@ -10,6 +10,11 @@ const client = new MongoClient(uri, {
         version: ServerApiVersion.v1,
         strict: true,
         deprecationErrors: true,
+
+        // useNewUrlParser: true,
+        // useUnifiedTopology: true,
+        // serverSelectionTimeoutMS: 5000,  // Timeout after 5s instead of 30s
+        // connectTimeoutMS: 10000, // 10 seconds timeout for initial connection
     }
 });
 

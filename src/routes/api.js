@@ -1,16 +1,14 @@
 const express = require("express");
-const { Hello } = require("../controller/HelloController");
-const postController = require('../controller/PostController');
-
-//TODO Fixed typo from 'Route' to 'Router'
 const router = express.Router();
 
-// TODO: This is my first GET routing
-router.get("/hello", Hello);
+const { getAllBrands, createBrand, getBrandById, updateBrand, deleteBrand } = require("../controller/BrandController");
 
-router.get('/posts', postController.getPosts);
-// POST /feed/post will be handled right now
-router.post('/post', postController.createPost);
+//* Define routes for Brand operations
+router.get('/brands', getAllBrands);
+router.post('/brands', createBrand);
+router.get('/brands/:id', getBrandById);
+router.put('/brands/:id', updateBrand);
+router.delete('/brands/:id', deleteBrand);
 
 //TODO Fixed export to use 'module.exports'
 module.exports = router;
