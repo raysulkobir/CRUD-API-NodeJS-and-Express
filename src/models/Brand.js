@@ -9,11 +9,15 @@ const BrandSchema = new mongoose.Schema({
         unique: true,
         trim: true
     },
+    remarks: {
+        type: String,
+        default: 'Note'
+    },
     createdAt: {
         type: Date,
         default: Date.now
     }
-});
+}, { versionKey: false });
 
 //TODO Create the model
 const Brand = mongoose.model('brand', BrandSchema);
